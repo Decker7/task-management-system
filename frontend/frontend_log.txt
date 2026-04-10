@@ -1,0 +1,20 @@
+
+> frontend@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.90.23.229:3000
+✓ Ready in 237ms
+
+ GET /login 200 in 150ms (next.js: 86ms, application-code: 64ms)
+⚠ Fast Refresh had to perform a full reload when ./src/lib/api.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /login 200 in 16ms (next.js: 1640µs, application-code: 14ms)
+✓ Compiled in 24ms
+ GET /login 200 in 38ms (next.js: 7ms, application-code: 31ms)
+ GET /tasks 200 in 26ms (next.js: 16ms, application-code: 10ms)
+ GET /login 200 in 15ms (next.js: 3ms, application-code: 12ms)
+ GET /tasks 200 in 10ms (next.js: 2ms, application-code: 7ms)
+ GET /login 200 in 48ms (next.js: 11ms, application-code: 37ms)
+ GET /tasks 200 in 14ms (next.js: 3ms, application-code: 11ms)
+[?25h
