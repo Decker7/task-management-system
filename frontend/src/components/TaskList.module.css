@@ -27,10 +27,7 @@
   font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.03em;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
 }
 
 .headerSubtitle {
@@ -141,8 +138,8 @@
 }
 
 .filterActive {
-  background: var(--accent-primary) !important;
-  color: white !important;
+  background: #FFFFFF !important;
+  color: #121212 !important;
   box-shadow: var(--shadow-sm);
 }
 
@@ -151,8 +148,8 @@
   align-items: center;
   gap: 6px;
   padding: 10px 20px;
-  background: var(--accent-gradient);
-  color: white;
+  background: #FFFFFF;
+  color: #121212;
   font-size: 14px;
   font-weight: 600;
   border-radius: var(--radius-md);
@@ -256,8 +253,8 @@
 
 .emptyBtn {
   padding: 10px 24px;
-  background: var(--accent-gradient);
-  color: white;
+  background: #FFFFFF;
+  color: #121212;
   font-size: 14px;
   font-weight: 600;
   border-radius: var(--radius-md);

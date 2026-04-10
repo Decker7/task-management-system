@@ -63,14 +63,8 @@ export default function LoginForm() {
         <div className={styles.header}>
           <div className={styles.logo}>
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <rect width="40" height="40" rx="12" fill="url(#logoGrad)" />
-              <path d="M12 20L17 25L28 14" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-              <defs>
-                <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
-                  <stop stopColor="#6366f1" />
-                  <stop offset="1" stopColor="#8b5cf6" />
-                </linearGradient>
-              </defs>
+              <rect width="40" height="40" rx="12" fill="#FFFFFF" />
+              <path d="M12 20L17 25L28 14" stroke="#121212" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           <h1 className={styles.title}>Welcome Back</h1>

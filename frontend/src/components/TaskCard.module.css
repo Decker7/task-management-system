@@ -47,14 +47,14 @@
 }
 
 .checkbox:hover:not(:disabled) {
-  border-color: var(--accent-primary);
-  background: rgba(99, 102, 241, 0.1);
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .checkbox.checked {
-  background: var(--accent-gradient);
+  background: #FFFFFF;
   border-color: transparent;
-  color: white;
+  color: #121212;
 }
 
 .info {
@@ -110,9 +110,9 @@
 }
 
 .statusPending {
-  background: var(--warning-bg);
-  color: var(--warning);
-  border: 1px solid var(--warning-border);
+  background: rgba(156, 163, 175, 0.1);
+  color: #9CA3AF;
+  border: 1px solid rgba(156, 163, 175, 0.2);
 }
 
 .statusCompleted {

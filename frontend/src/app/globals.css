@@ -1,44 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Color palette */
-  --bg-primary: #0a0e1a;
-  --bg-secondary: #111827;
-  --bg-card: rgba(17, 24, 39, 0.7);
-  --bg-card-hover: rgba(30, 41, 59, 0.8);
-  --bg-glass: rgba(255, 255, 255, 0.03);
-  --bg-glass-border: rgba(255, 255, 255, 0.08);
-  --bg-input: rgba(15, 23, 42, 0.8);
+  /* Monochromatic Dark — Sleek & Professional */
+  --bg-primary: #121212;
+  --bg-secondary: #1E1E1E;
+  --bg-card: #1E1E1E;
+  --bg-card-hover: #2A2A2A;
+  --bg-glass: rgba(255, 255, 255, 0.02);
+  --bg-glass-border: rgba(255, 255, 255, 0.06);
+  --bg-input: #181818;
 
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-placeholder: #475569;
+  --text-primary: #F3F4F6;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --text-placeholder: #4B5563;
 
-  --accent-primary: #6366f1;
-  --accent-primary-hover: #818cf8;
-  --accent-secondary: #8b5cf6;
-  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
+  --accent-primary: #FFFFFF;
+  --accent-primary-hover: #D1D5DB;
+  --accent-secondary: #64748B;
+  --accent-gradient: linear-gradient(135deg, #FFFFFF 0%, #D1D5DB 100%);
 
-  --success: #10b981;
-  --success-bg: rgba(16, 185, 129, 0.1);
-  --success-border: rgba(16, 185, 129, 0.3);
+  --success: #4ADE80;
+  --success-bg: rgba(74, 222, 128, 0.08);
+  --success-border: rgba(74, 222, 128, 0.2);
 
-  --warning: #f59e0b;
-  --warning-bg: rgba(245, 158, 11, 0.1);
-  --warning-border: rgba(245, 158, 11, 0.3);
+  --warning: #FBBF24;
+  --warning-bg: rgba(251, 191, 36, 0.08);
+  --warning-border: rgba(251, 191, 36, 0.2);
 
-  --danger: #ef4444;
-  --danger-bg: rgba(239, 68, 68, 0.1);
-  --danger-border: rgba(239, 68, 68, 0.3);
+  --danger: #F87171;
+  --danger-bg: rgba(248, 113, 113, 0.08);
+  --danger-border: rgba(248, 113, 113, 0.2);
 
   --border: rgba(255, 255, 255, 0.06);
-  --border-active: rgba(99, 102, 241, 0.5);
+  --border-active: rgba(255, 255, 255, 0.3);
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 20px rgba(255, 255, 255, 0.05);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -66,9 +66,7 @@ html, body {
 }
 
 body {
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.12), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(139, 92, 246, 0.06), transparent);
+  background-image: none;
 }
 
 /* Scrollbar */
@@ -81,7 +79,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
+  background: #333;
   border-radius: var(--radius-full);
 }
 
@@ -150,7 +148,7 @@ body {
 
 /* Skeleton loading */
 .skeleton {
-  background: linear-gradient(90deg, var(--bg-card) 25%, rgba(30, 41, 59, 0.5) 50%, var(--bg-card) 75%);
+  background: linear-gradient(90deg, #1E1E1E 25%, #2A2A2A 50%, #1E1E1E 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: var(--radius-sm);
@@ -174,13 +172,13 @@ body {
 
 /* Utility */
 a {
-  color: var(--accent-primary);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: var(--transition);
 }
 
 a:hover {
-  color: var(--accent-primary-hover);
+  color: var(--text-primary);
 }
 
 button {
