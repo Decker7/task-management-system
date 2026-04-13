@@ -17,7 +17,7 @@
   border: 1px solid var(--bg-glass-border);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-lg), 0 0 40px rgba(99, 102, 241, 0.08);
+  box-shadow: var(--shadow-lg);
 }
 
 .header {
@@ -99,7 +99,7 @@
 .input:focus,
 .textarea:focus {
   border-color: var(--border-active);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.04);
 }
 
 .inputError {
@@ -144,8 +144,8 @@
 
 .submitBtn {
   padding: 10px 24px;
-  background: var(--accent-gradient);
-  color: white;
+  background: #FFFFFF;
+  color: #121212;
   font-size: 14px;
   font-weight: 600;
   border-radius: var(--radius-md);

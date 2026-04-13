@@ -109,14 +109,8 @@ export default function TaskList() {
         <div className={styles.headerLeft}>
           <div className={styles.logoMark}>
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect width="32" height="32" rx="10" fill="url(#headerLogo)" />
-              <path d="M10 16L14 20L22 12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              <defs>
-                <linearGradient id="headerLogo" x1="0" y1="0" x2="32" y2="32">
-                  <stop stopColor="#6366f1" />
-                  <stop offset="1" stopColor="#8b5cf6" />
-                </linearGradient>
-              </defs>
+              <rect width="32" height="32" rx="10" fill="#FFFFFF" />
+              <path d="M10 16L14 20L22 12" stroke="#121212" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           <div>
