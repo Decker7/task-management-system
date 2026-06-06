@@ -21,10 +21,25 @@ function getStoredAuthToken(): string | null {
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(() => getStoredAuthToken());
-  const [isLoading, setIsLoading] = useState(() => getStoredAuthToken() !== null);
+  const [token, setToken] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Check for existing token on mount
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const storedToken = getStoredAuthToken();
+
+      if (storedToken) {
+        setToken(storedToken);
+        return;
+      }
+
+      setIsLoading(false);
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
+
+  // Check for existing token after the app mounts.
   useEffect(() => {
     if (!token) return;
 

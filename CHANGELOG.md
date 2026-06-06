@@ -18,6 +18,7 @@ once formal releases begin.
 
 - Added a test-only Laravel app key so backend tests can run in clean checkouts.
 - Fixed frontend lint and typecheck failures in the auth provider and task form.
+- Fixed auth hydration mismatch by loading stored tokens only after mount.
 
 ### Security
 
