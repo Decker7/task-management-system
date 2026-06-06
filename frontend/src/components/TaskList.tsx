@@ -252,13 +252,15 @@ export default function TaskList() {
       )}
 
       {/* Task Form Modal */}
-      <TaskForm
-        isOpen={isFormOpen}
-        onClose={() => { setIsFormOpen(false); setServerErrors({}); }}
-        onSubmit={handleCreateTask}
-        isSubmitting={isSubmitting}
-        serverErrors={serverErrors}
-      />
+      {isFormOpen && (
+        <TaskForm
+          isOpen={isFormOpen}
+          onClose={() => { setIsFormOpen(false); setServerErrors({}); }}
+          onSubmit={handleCreateTask}
+          isSubmitting={isSubmitting}
+          serverErrors={serverErrors}
+        />
+      )}
     </div>
   );
 }
