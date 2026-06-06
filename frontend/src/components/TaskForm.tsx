@@ -3,19 +3,30 @@
 import { useState, FormEvent, useEffect, useRef } from 'react';
 import styles from './TaskForm.module.css';
 
+type TaskField = 'title' | 'description';
+type FormErrors = Partial<Record<TaskField, string[]>>;
+
 interface TaskFormProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (data: { title: string; description: string }) => Promise<void>;
   isSubmitting: boolean;
-  serverErrors?: Record<string, string[]>;
+  serverErrors?: FormErrors;
 }
 
 export default function TaskForm({ isOpen, onClose, onSubmit, isSubmitting, serverErrors }: TaskFormProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [errors, setErrors] = useState<Record<string, string[]>>({});
+  const [clientErrors, setClientErrors] = useState<FormErrors>({});
+  const [clearedServerFields, setClearedServerFields] = useState<Set<TaskField>>(() => new Set());
   const titleRef = useRef<HTMLInputElement>(null);
+
+  const errors: FormErrors = { ...(serverErrors ?? {}), ...clientErrors };
+  clearedServerFields.forEach((field) => {
+    if (!clientErrors[field]) {
+      delete errors[field];
+    }
+  });
 
   // Focus title input when modal opens
   useEffect(() => {
@@ -24,24 +35,8 @@ export default function TaskForm({ isOpen, onClose, onSubmit, isSubmitting, serv
     }
   }, [isOpen]);
 
-  // Merge server errors
-  useEffect(() => {
-    if (serverErrors) {
-      setErrors((prev) => ({ ...prev, ...serverErrors }));
-    }
-  }, [serverErrors]);
-
-  // Reset form when closing
-  useEffect(() => {
-    if (!isOpen) {
-      setTitle('');
-      setDescription('');
-      setErrors({});
-    }
-  }, [isOpen]);
-
   const validate = (): boolean => {
-    const newErrors: Record<string, string[]> = {};
+    const newErrors: FormErrors = {};
     if (!title.trim()) {
       newErrors.title = ['Task title is required.'];
     } else if (title.length > 255) {
@@ -50,8 +45,18 @@ export default function TaskForm({ isOpen, onClose, onSubmit, isSubmitting, serv
     if (description.length > 1000) {
       newErrors.description = ['Description must be less than 1000 characters.'];
     }
-    setErrors(newErrors);
+    setClearedServerFields(new Set());
+    setClientErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const clearFieldError = (field: TaskField) => {
+    setClientErrors((previousErrors) => {
+      const nextErrors = { ...previousErrors };
+      delete nextErrors[field];
+      return nextErrors;
+    });
+    setClearedServerFields((previousFields) => new Set(previousFields).add(field));
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -94,7 +99,7 @@ export default function TaskForm({ isOpen, onClose, onSubmit, isSubmitting, serv
               className={`${styles.input} ${errors.title ? styles.inputError : ''}`}
               placeholder="What needs to be done?"
               value={title}
-              onChange={(e) => { setTitle(e.target.value); setErrors((prev) => ({ ...prev, title: undefined })); }}
+              onChange={(e) => { setTitle(e.target.value); clearFieldError('title'); }}
               disabled={isSubmitting}
               maxLength={255}
             />
@@ -113,7 +118,7 @@ export default function TaskForm({ isOpen, onClose, onSubmit, isSubmitting, serv
               className={`${styles.textarea} ${errors.description ? styles.inputError : ''}`}
               placeholder="Add more details about this task..."
               value={description}
-              onChange={(e) => { setDescription(e.target.value); setErrors((prev) => ({ ...prev, description: undefined })); }}
+              onChange={(e) => { setDescription(e.target.value); clearFieldError('description'); }}
               disabled={isSubmitting}
               rows={3}
               maxLength={1000}

@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
-import { User, getMe, login as apiLogin, logout as apiLogout, ApiError } from '@/lib/api';
+import { User, getMe, login as apiLogin, logout as apiLogout } from '@/lib/api';
 
 interface AuthContextType {
   user: User | null;
@@ -14,30 +14,61 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+function getStoredAuthToken(): string | null {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem('auth_token');
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check for existing token on mount
   useEffect(() => {
-    const storedToken = localStorage.getItem('auth_token');
-    if (storedToken) {
-      setToken(storedToken);
-      getMe()
-        .then((res) => {
-          setUser(res.user);
-        })
-        .catch(() => {
-          // Token is invalid, clear it
-          localStorage.removeItem('auth_token');
-          setToken(null);
-        })
-        .finally(() => setIsLoading(false));
-    } else {
+    const timeoutId = window.setTimeout(() => {
+      const storedToken = getStoredAuthToken();
+
+      if (storedToken) {
+        setToken(storedToken);
+        return;
+      }
+
       setIsLoading(false);
-    }
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
   }, []);
+
+  // Check for existing token after the app mounts.
+  useEffect(() => {
+    if (!token) return;
+
+    let isActive = true;
+
+    getMe()
+      .then((res) => {
+        if (isActive) {
+          setUser(res.user);
+        }
+      })
+      .catch(() => {
+        if (!isActive) return;
+
+        // Token is invalid, clear it.
+        localStorage.removeItem('auth_token');
+        setToken(null);
+        setUser(null);
+      })
+      .finally(() => {
+        if (isActive) {
+          setIsLoading(false);
+        }
+      });
+
+    return () => {
+      isActive = false;
+    };
+  }, [token]);
 
   const login = useCallback(async (email: string, password: string) => {
     const response = await apiLogin(email, password);
