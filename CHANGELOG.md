@@ -11,6 +11,8 @@ once formal releases begin.
 
 - Added open-source maintenance files for contributing, conduct, security, issue
   templates, pull request review, and CI.
+- Documented seeded demo credentials and added backend coverage for demo data.
+- Added a real screenshot of the seeded task board to the README.
 
 ### Fixed
 

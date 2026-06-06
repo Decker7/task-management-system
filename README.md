@@ -9,6 +9,10 @@ This repository is maintained as a practical open-source example app. It was
 originally built from a technical-assessment style brief, and the current goal is
 to make it easier for other developers to run, test, and extend honestly.
 
+## Screenshot
+
+![Seeded task board demo](docs/assets/task-board.png)
+
 ## Tech stack
 
 - Frontend: Next.js 16, React 19, TypeScript, CSS Modules
@@ -41,7 +45,7 @@ cd backend
 composer install
 cp .env.example .env
 php artisan key:generate
-php artisan migrate
+php artisan migrate --seed
 php artisan serve
 ```
 
@@ -58,8 +62,21 @@ npm run dev
 The frontend defaults to `http://127.0.0.1:8000/api`. To point it at another
 API, create `frontend/.env.local` with `NEXT_PUBLIC_API_URL=<your API URL>`.
 
-Open `http://localhost:3000` and log in with a user you created in the backend
-database. The API exposes login and task endpoints under `/api`.
+Open `http://localhost:3000` and log in with the seeded demo account:
+
+- Email: `admin@example.com`
+- Password: `password`
+
+The demo seed creates a maintainer-friendly task board with completed and
+pending tasks so new contributors can inspect the full workflow immediately.
+The API exposes login and task endpoints under `/api`.
+
+To reset the demo data during local development:
+
+```bash
+cd backend
+php artisan migrate:fresh --seed
+```
 
 ## API overview
 
@@ -111,10 +128,15 @@ dumps, or local logs. See `SECURITY.md` for vulnerability reporting.
 
 ## Roadmap
 
-- Add seeded demo users and tasks for easier local onboarding.
 - Add frontend component tests for the task form and auth flow.
 - Add API documentation with request and response examples.
 - Add release tags once the project has a stable demo setup.
+
+## Demo data
+
+`backend/database/seeders/DatabaseSeeder.php` creates one demo user and ten
+sample tasks. The seeder is idempotent, so rerunning it refreshes missing demo
+records without duplicating existing tasks.
 
 ## Maintainer note
 
